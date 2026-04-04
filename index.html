@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sky Converter</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%235c5ce8'/%3E%3Cg transform='translate(4,4)'%3E%3Cpath d='M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z' fill='white'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+
+<!-- =========== HEADER =========== -->
+<header class="header">
+  <div class="logo">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.5 20Q4.22 20 2.61 18.43 1 16.85 1 14.58q0-1.95 1.17-3.48 1.18-1.53 3.08-1.95.51-2.29 2.39-3.72Q9.52 4 12 4q2.93 0 4.96 2.04Q19 8.07 19 11q1.73.2 2.86 1.5Q23 13.8 23 15.5q0 1.88-1.31 3.19T18.5 20z"/>
+    </svg>
+  </div>
+
+  <div class="header-text">
+    <div class="header-title">Sky Converter</div>
+    <div class="header-sub" data-i18n="header_sub">Minecraft Bedrock &#8596; Java Sky テクスチャ変換ツール</div>
+  </div>
+
+  <!-- Tab buttons in header -->
+  <nav class="header-tabs">
+    <button class="header-tab-btn active" onclick="switchTab('b2j')" data-i18n="tab_b2j">Bedrock &rarr; Java</button>
+    <button class="header-tab-btn"        onclick="switchTab('j2b')" data-i18n="tab_j2b">Java &rarr; Bedrock</button>
+  </nav>
+
+  <div class="header-spacer"></div>
+
+  <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</header>
+
+
+<!-- =========== MAIN =========== -->
+<main class="main">
+
+  <!-- ===========================
+       TAB 1: Bedrock → Java
+  ============================ -->
+  <div id="panel-b2j" class="tab-panel active">
+
+    <div class="sec-head">
+      <h2 data-i18n="b2j_h2">Bedrock Sky &rarr; Java Sky</h2>
+      <p  data-i18n="b2j_p">統合版のキューブマップ画像 6 枚を Java 版の sky.png（3&times;2 グリッド）に変換します</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" data-i18n="b2j_card_label">Bedrock キューブマップ &mdash; 6 枚をアップロード</div>
+
+      <div class="info">
+        <span class="info-icon">i</span>
+        <div data-i18n="b2j_info">各スロット（cubemap_0 〜 5）をクリックして個別に選択できます。<br>または、6 枚をまとめてエリア全体にドロップすると <strong>ファイル名から自動割り当て</strong> されます。</div>
+      </div>
+
+      <!-- Drop overlay + 6 slots -->
+      <div class="drop-overlay" id="b2j-overlay"
+           ondragover="event.preventDefault(); setOver('b2j-overlay', true)"
+           ondragleave="setOver('b2j-overlay', false)"
+           ondrop="handleBedrockDrop(event)">
+        <input class="overlay-input" type="file" multiple accept="image/*" onchange="handleBedrockMulti(event)">
+        <div class="slot-grid" id="slot-grid"></div>
+        <p class="drop-hint" data-i18n="drop_hint">&#9650; 6 枚まとめてここにドロップ可</p>
+      </div>
+
+      <!-- Panorama layout preview -->
+      <div class="pano-section">
+        <p class="pano-label" data-i18n="pano_label">配置プレビュー（images.png 準拠: [5][4][2] / [3][0][1]）</p>
+        <div class="pano-grid">
+          <!-- row 0 -->
+          <div class="pano-cell" id="pc-5"><span class="pano-cell-badge">cubemap_5</span></div>
+          <div class="pano-cell" id="pc-4"><span class="pano-cell-badge">cubemap_4</span></div>
+          <div class="pano-cell" id="pc-2"><span class="pano-cell-badge">cubemap_2</span></div>
+          <!-- row 1 -->
+          <div class="pano-cell" id="pc-3"><span class="pano-cell-badge">cubemap_3</span></div>
+          <div class="pano-cell" id="pc-0"><span class="pano-cell-badge">cubemap_0</span></div>
+          <div class="pano-cell" id="pc-1"><span class="pano-cell-badge">cubemap_1</span></div>
+        </div>
+      </div>
+
+      <button class="convert-btn" id="btn-b2j" disabled onclick="openConvertModal()">
+        <span data-i18n="btn_convert">&#9889; 変換する</span>
+      </button>
+    </div>
+
+    <!-- Result -->
+    <div class="result-card" id="res-b2j">
+      <div class="card-label" style="display: flex; align-items: center;">
+        <span data-i18n="res_b2j_label">変換結果 &mdash; sky.png</span>
+        <button class="reset-btn" onclick="resetB2J()" data-i18n="btn_reset">&#x21BA; リセット</button>
+      </div>
+      <img class="result-preview" id="res-b2j-img" src="" alt="sky.png preview">
+      <a class="btn-dl" id="res-b2j-dl" href="" download="sky.png" data-i18n="btn_dl_sky">
+        &darr; sky.png をダウンロード
+      </a>
+    </div>
+
+  </div><!-- /panel-b2j -->
+
+
+  <!-- ===========================
+       TAB 2: Java → Bedrock
+  ============================ -->
+  <div id="panel-j2b" class="tab-panel">
+
+    <div class="sec-head">
+      <h2 data-i18n="j2b_h2">Java Sky &rarr; Bedrock Sky</h2>
+      <p  data-i18n="j2b_p">Java 版の sky.png を統合版のキューブマップ画像 6 枚に変換します</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label" data-i18n="j2b_card_label">Java sky.png をアップロード</div>
+
+      <div class="info">
+        <span class="info-icon">i</span>
+        <div>
+          <span data-i18n="j2b_info">Java 版の sky.png（3&times;2 グリッドレイアウト）をアップロードしてください。<br>以下の配置で分割されます:</span>
+          <div style="margin-top: 8px;">
+            <div class="layout-code">[cubemap_5][cubemap_4][cubemap_2]<br>[cubemap_3][cubemap_0][cubemap_1]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="drop-zone" id="j2b-dz"
+           ondragover="event.preventDefault(); setOver('j2b-dz', true)"
+           ondragleave="setOver('j2b-dz', false)"
+           ondrop="handleJavaDrop(event)">
+        <input type="file" accept="image/*" onchange="handleJavaInput(event)">
+        <span class="dz-icon">&#128444;</span>
+        <div class="dz-text" data-i18n="dz_text">sky.png をドロップ、またはクリックして選択</div>
+        <div class="dz-name" id="j2b-fname"></div>
+      </div>
+
+      <div class="java-prev-wrap" id="j2b-prev-wrap">
+        <p class="prev-label" data-i18n="prev_label">プレビュー</p>
+        <img id="j2b-prev-img" src="" alt="sky.png preview">
+      </div>
+
+      <button class="convert-btn" id="btn-j2b" disabled onclick="convertJ2B()">
+        <span data-i18n="btn_convert">&#9889; 変換する</span>
+      </button>
+    </div>
+
+    <!-- Result -->
+    <div class="result-card" id="res-j2b">
+      <div class="card-label" style="display: flex; align-items: center;">
+        <span data-i18n="res_j2b_label">変換結果 &mdash; キューブマップ 6 枚</span>
+        <button class="reset-btn" onclick="resetJ2B()" data-i18n="btn_reset">&#x21BA; リセット</button>
+      </div>
+      <button class="btn-zip" onclick="downloadZip()" data-i18n="btn_zip">&darr; すべて ZIP でダウンロード</button>
+      <div class="br-grid" id="br-grid"></div>
+    </div>
+
+  </div><!-- /panel-j2b -->
+
+</main>
+
+
+<!-- =========== MODAL: Bedrock→Java options =========== -->
+<div class="modal-overlay" id="modal-b2j" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-title" data-i18n="modal_title">変換オプション</div>
+    <div class="modal-body">
+      <div class="chk-row" id="chk-row-lce" onclick="toggleLce()">
+        <div class="chk-box" id="chk-box-lce"></div>
+        <div class="chk-info">
+          <strong data-i18n="modal_lce_title">LCE Convert</strong>
+          <p data-i18n="modal_lce_desc">出力画像を以下のサイズにリサイズします（Legacy Console Edition 向け）</p>
+          <span class="chk-size">4032 &times; 2688 px</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-cancel"  onclick="closeModal()"    data-i18n="modal_cancel">キャンセル</button>
+      <button class="modal-confirm" onclick="doConvertB2J()"  data-i18n="modal_confirm">変換する</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
