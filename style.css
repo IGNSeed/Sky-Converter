@@ -640,7 +640,7 @@ body {
   .header-tabs {
     order: 10;
     width: 100%;
-    margin: 0 0 8px;
+    margin: 8px 0 8px; /* ← 上余白を追加（0 → 8px） */
   }
   /* タブボタンを均等幅に */
   .header-tab-btn {
