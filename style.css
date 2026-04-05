@@ -55,6 +55,22 @@ body {
 .header-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.3px; }
 .header-sub   { font-size: 0.72rem; color: var(--muted); margin-top: -2px; }
 
+/* Header reset button */
+.header-reset-btn {
+  padding: 6px 14px;
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.header-reset-btn:hover { border-color: var(--danger); color: var(--danger); }
+
 /* Header tab buttons */
 .header-tabs {
   display: flex;
@@ -63,7 +79,6 @@ body {
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 3px;
-  margin-left: 8px;
 }
 
 .header-tab-btn {
@@ -636,11 +651,15 @@ body {
     column-gap: 10px;
     row-gap: 0;
   }
-  /* タブを最後尾（2行目）へ */
+  /* タブ・リセットボタンを最後尾（2行目）へ */
   .header-tabs {
     order: 10;
     width: 100%;
-    margin: 8px 0 8px; /* ← 上余白を追加（0 → 8px） */
+    margin: 8px 0 8px;
+  }
+  .header-reset-btn {
+    order: 9;
+    margin-top: 8px;
   }
   /* タブボタンを均等幅に */
   .header-tab-btn {
