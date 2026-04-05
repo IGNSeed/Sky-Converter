@@ -57,16 +57,8 @@ Sky Converter/
 ├── index.html    # HTML 構造
 ├── style.css     # スタイルシート
 ├── script.js     # 変換ロジック・i18n
-├── BedrockSky/   # テンプレート画像（Bedrock 形式サンプル）
-│   ├── cubemap_0.png
-│   ├── cubemap_1.png
-│   ├── cubemap_2.png
-│   ├── cubemap_3.png
-│   ├── cubemap_4.png
-│   └── cubemap_5.png
-├── JavaSky/      # テンプレート画像（Java 形式サンプル）
-│   └── sky.png
-└── images.png    # キューブマップ配置の参考図
+├── images/       # サムネイル画像
+     └── thumbnail.png
 ```
 
 ### 動作環境
@@ -129,16 +121,8 @@ Sky Converter/
 ├── index.html    # HTML structure
 ├── style.css     # Stylesheet
 ├── script.js     # Conversion logic & i18n
-├── BedrockSky/   # Template images (Bedrock format samples)
-│   ├── cubemap_0.png
-│   ├── cubemap_1.png
-│   ├── cubemap_2.png
-│   ├── cubemap_3.png
-│   ├── cubemap_4.png
-│   └── cubemap_5.png
-├── JavaSky/      # Template images (Java format sample)
-│   └── sky.png
-└── images.png    # Reference diagram for cubemap layout
+├── images/       # Thumbnail images
+    └── thumbnail.png
 ```
 
 ### Requirements
