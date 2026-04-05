@@ -110,6 +110,13 @@ function switchTab(id) {
   });
 }
 
+function resetCurrent() {
+  const active = document.querySelector('.tab-panel.active');
+  if (!active) return;
+  if (active.id === 'panel-b2j') resetB2J();
+  else if (active.id === 'panel-j2b') resetJ2B();
+}
+
 /* ================================================================
    Utilities
 ================================================================ */
