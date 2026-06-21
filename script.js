@@ -1,262 +1,262 @@
-/* ================================================================
-   i18n
-================================================================ */
-let lang = 'ja';
+let lang = "ja";
 
-const T = {
+const translations = {
   ja: {
-    header_sub:     'Minecraft Bedrock &#8596; Java Sky テクスチャ変換ツール',
-    tab_b2j:        'Bedrock &rarr; Java',
-    tab_j2b:        'Java &rarr; Bedrock',
-    b2j_h2:         'Bedrock Sky &rarr; Java Sky',
-    b2j_p:          '統合版のキューブマップ画像 6 枚を Java 版の sky.png（3&times;2 グリッド）に変換します',
-    b2j_card_label: 'Bedrock キューブマップ &mdash; 6 枚をアップロード',
-    b2j_info:       '各スロット（cubemap_0 〜 5）をクリックして個別に選択できます。<br>または、6 枚をまとめてエリア全体にドロップすると <strong>ファイル名から自動割り当て</strong> されます。',
-    drop_hint:      '&#9650; 6 枚まとめてここにドロップ可',
-    pano_label:     '配置プレビュー（images.png 準拠: [5][4][2] / [3][0][1]）',
-    btn_convert:    '&#9889; 変換する',
-    res_b2j_label:  '変換結果 &mdash; sky.png',
-    btn_reset:      '&#x21BA; リセット',
-    btn_dl_sky:     '&darr; sky.png をダウンロード',
-    j2b_h2:         'Java Sky &rarr; Bedrock Sky',
-    j2b_p:          'Java 版の sky.png を統合版のキューブマップ画像 6 枚に変換します',
-    j2b_card_label: 'Java sky.png をアップロード',
-    j2b_info:       'Java 版の sky.png（3&times;2 グリッドレイアウト）をアップロードしてください。<br>以下の配置で分割されます:',
-    dz_text:        'sky.png をドロップ、またはクリックして選択',
-    prev_label:     'プレビュー',
-    res_j2b_label:  '変換結果 &mdash; キューブマップ 6 枚',
-    btn_zip:        '&darr; すべて ZIP でダウンロード',
-    br_dl:          '&darr; ダウンロード',
-    modal_title:    '変換オプション',
-    modal_lce_title:'LCE Convert',
-    modal_lce_desc: '出力画像を以下のサイズにリサイズします（Legacy Console Edition 向け）',
-    modal_cancel:   'キャンセル',
-    modal_confirm:  '変換する',
-    lang_next:      'EN',
+    header_sub: "BedrockとJavaの空テクスチャ変換",
+    page_title: "Sky Texture Converter",
+    page_description: "画像はアップロードされず、すべてブラウザ内で処理されます。",
+    tab_b2j: "Bedrock → Java",
+    tab_j2b: "Java → Bedrock",
+    b2j_h2: "BedrockからJavaへ",
+    b2j_p: "6枚のcubemap画像を1枚のsky.pngにまとめます。",
+    b2j_card_label: "cubemap画像を選択",
+    b2j_info: "各枠から個別に選ぶか、ファイル名がcubemap_0～5の6枚をまとめてドロップしてください。",
+    drop_hint: "6枚をまとめてここへドロップできます",
+    pano_label: "出力レイアウト",
+    btn_convert: "変換する",
+    res_b2j_label: "変換結果：sky.png",
+    btn_reset: "リセット",
+    btn_dl_sky: "sky.pngをダウンロード",
+    j2b_h2: "JavaからBedrockへ",
+    j2b_p: "1枚のsky.pngを6枚のcubemap画像に分割します。",
+    j2b_card_label: "sky.pngを選択",
+    j2b_info: "3×2のグリッドで構成されたJava版のsky.pngを選択してください。",
+    dz_text: "sky.pngを選択またはドロップ",
+    prev_label: "プレビュー",
+    res_j2b_label: "変換結果：cubemap 6枚",
+    btn_zip: "ZIPでまとめてダウンロード",
+    br_dl: "ダウンロード",
+    modal_title: "変換オプション",
+    modal_lce_title: "LCE向けに変換",
+    modal_lce_desc: "出力画像をLegacy Console Edition向けのサイズに変更します。",
+    modal_cancel: "キャンセル",
+    modal_confirm: "変換する",
+    lang_next: "EN"
   },
   en: {
-    header_sub:     'Minecraft Bedrock &#8596; Java Sky Texture Converter',
-    tab_b2j:        'Bedrock &rarr; Java',
-    tab_j2b:        'Java &rarr; Bedrock',
-    b2j_h2:         'Bedrock Sky &rarr; Java Sky',
-    b2j_p:          'Convert 6 Bedrock cubemap images into a Java sky.png (3&times;2 grid)',
-    b2j_card_label: 'Bedrock Cubemaps &mdash; Upload 6 Images',
-    b2j_info:       'Click each slot (cubemap_0 to 5) to upload individually.<br>Or drop all 6 files onto the area for <strong>automatic assignment by filename</strong>.',
-    drop_hint:      '&#9650; Drop all 6 files here',
-    pano_label:     'Layout Preview (images.png reference: [5][4][2] / [3][0][1])',
-    btn_convert:    '&#9889; Convert',
-    res_b2j_label:  'Result &mdash; sky.png',
-    btn_reset:      '&#x21BA; Reset',
-    btn_dl_sky:     '&darr; Download sky.png',
-    j2b_h2:         'Java Sky &rarr; Bedrock Sky',
-    j2b_p:          'Convert a Java sky.png into 6 Bedrock cubemap images',
-    j2b_card_label: 'Upload Java sky.png',
-    j2b_info:       'Upload your Java sky.png (3&times;2 grid layout).<br>It will be split as follows:',
-    dz_text:        'Drop sky.png here or click to select',
-    prev_label:     'Preview',
-    res_j2b_label:  'Result &mdash; 6 Cubemap Files',
-    btn_zip:        '&darr; Download All as ZIP',
-    br_dl:          '&darr; Download',
-    modal_title:    'Conversion Options',
-    modal_lce_title:'LCE Convert',
-    modal_lce_desc: 'Resize output to the following size (for Legacy Console Edition)',
-    modal_cancel:   'Cancel',
-    modal_confirm:  'Convert',
-    lang_next:      'JA',
+    header_sub: "Bedrock and Java sky texture converter",
+    page_title: "Sky Texture Converter",
+    page_description: "Images stay on your device and are processed entirely in your browser.",
+    tab_b2j: "Bedrock → Java",
+    tab_j2b: "Java → Bedrock",
+    b2j_h2: "Bedrock to Java",
+    b2j_p: "Combine six cubemap images into one sky.png.",
+    b2j_card_label: "Select cubemap images",
+    b2j_info: "Choose each image separately, or drop six files named cubemap_0 through cubemap_5.",
+    drop_hint: "You can drop all six images here",
+    pano_label: "Output layout",
+    btn_convert: "Convert",
+    res_b2j_label: "Result: sky.png",
+    btn_reset: "Reset",
+    btn_dl_sky: "Download sky.png",
+    j2b_h2: "Java to Bedrock",
+    j2b_p: "Split one sky.png into six cubemap images.",
+    j2b_card_label: "Select sky.png",
+    j2b_info: "Select a Java sky.png arranged as a 3×2 grid.",
+    dz_text: "Select or drop sky.png",
+    prev_label: "Preview",
+    res_j2b_label: "Result: 6 cubemap images",
+    btn_zip: "Download all as ZIP",
+    br_dl: "Download",
+    modal_title: "Conversion options",
+    modal_lce_title: "Convert for LCE",
+    modal_lce_desc: "Resize the output for Legacy Console Edition.",
+    modal_cancel: "Cancel",
+    modal_confirm: "Convert",
+    lang_next: "JA"
   }
 };
 
-function applyLang() {
-  const t = T[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    if (t[key] !== undefined) el.innerHTML = t[key];
-  });
-  document.querySelectorAll('.br-item-dl').forEach(el => {
-    el.innerHTML = t.br_dl;
-  });
-  document.getElementById('lang-btn').textContent = t.lang_next;
-  document.documentElement.lang = lang;
-}
-
-function toggleLang() {
-  lang = lang === 'ja' ? 'en' : 'ja';
-  applyLang();
-}
-
-/* ================================================================
-   State
-================================================================ */
-const faces  = new Array(6).fill(null); // HTMLImageElement | null
-let javaImg  = null;                    // HTMLImageElement
-let zipFiles = [];                      // [{ name, dataUrl }]
-let lceOn    = false;
-
-// Layout from images.png: LAYOUT[row][col] = face index
-const LAYOUT = [
+const faces = new Array(6).fill(null);
+const layout = [
   [5, 4, 2],
   [3, 0, 1]
 ];
 
-/* ================================================================
-   Tab switching
-================================================================ */
-function switchTab(id) {
-  document.querySelectorAll('.header-tab-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', ['b2j', 'j2b'][i] === id);
+let javaImg = null;
+let zipFiles = [];
+let lceOn = false;
+
+function applyLang() {
+  const text = translations[lang];
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const value = text[element.dataset.i18n];
+    if (value !== undefined) {
+      element.textContent = value;
+    }
   });
-  document.querySelectorAll('.tab-panel').forEach(p => {
-    p.classList.toggle('active', p.id === 'panel-' + id);
+  document.querySelectorAll(".br-item-dl").forEach((element) => {
+    element.textContent = text.br_dl;
+  });
+  document.getElementById("lang-btn").textContent = text.lang_next;
+  document.documentElement.lang = lang;
+}
+
+function toggleLang() {
+  lang = lang === "ja" ? "en" : "ja";
+  applyLang();
+}
+
+function switchTab(id) {
+  document.querySelectorAll(".tab-button").forEach((button, index) => {
+    button.classList.toggle("active", ["b2j", "j2b"][index] === id);
+  });
+  document.querySelectorAll(".tab-panel").forEach((panel) => {
+    panel.classList.toggle("active", panel.id === `panel-${id}`);
   });
 }
 
 function resetCurrent() {
-  const active = document.querySelector('.tab-panel.active');
-  if (!active) return;
-  if (active.id === 'panel-b2j') resetB2J();
-  else if (active.id === 'panel-j2b') resetJ2B();
+  const activePanel = document.querySelector(".tab-panel.active");
+  if (!activePanel) {
+    return;
+  }
+  if (activePanel.id === "panel-b2j") {
+    resetB2J();
+  } else {
+    resetJ2B();
+  }
 }
 
-/* ================================================================
-   Utilities
-================================================================ */
-function setOver(id, on) {
-  document.getElementById(id).classList.toggle('over', on);
+function setOver(id, enabled) {
+  document.getElementById(id).classList.toggle("over", enabled);
 }
 
-function loadImg(src) {
+function loadImg(source) {
   return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload  = () => resolve(img);
-    img.onerror = reject;
-    img.src = src;
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = reject;
+    image.src = source;
   });
 }
 
 function readFile(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload  = e => resolve(e.target.result);
+    reader.onload = (event) => resolve(event.target.result);
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
 }
 
-function dlFile(url, name) {
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = name;
-  a.click();
+function downloadFile(url, name) {
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = name;
+  link.click();
 }
 
-/* ================================================================
-   Init: 6 upload slots
-================================================================ */
 function initSlots() {
-  const grid = document.getElementById('slot-grid');
-  for (let i = 0; i < 6; i++) {
-    const slot = document.createElement('div');
-    slot.className = 'slot';
-    slot.id = 'slot-' + i;
+  const grid = document.getElementById("slot-grid");
+  for (let index = 0; index < 6; index += 1) {
+    const slot = document.createElement("div");
+    slot.className = "slot";
+    slot.id = `slot-${index}`;
     slot.innerHTML = `
-      <input type="file" accept="image/*" onchange="handleSlot(event, ${i})">
-      <img class="slot-img" id="simg-${i}" src="" alt="">
-      <div class="slot-ph"><span class="slot-ph-icon">+</span></div>
-      <span class="slot-badge">cubemap_${i}</span>
+      <input type="file" accept="image/*" onchange="handleSlot(event, ${index})">
+      <img class="slot-img" id="simg-${index}" src="" alt="">
+      <span class="slot-placeholder" aria-hidden="true">＋</span>
+      <span class="slot-badge">cubemap_${index}</span>
     `;
     grid.appendChild(slot);
   }
 }
 
-/* ================================================================
-   Bedrock → Java: file uploads
-================================================================ */
-async function handleSlot(ev, idx) {
-  ev.stopPropagation();
-  const file = ev.target.files[0];
-  if (file) await loadFace(idx, file);
+async function handleSlot(event, index) {
+  event.stopPropagation();
+  const file = event.target.files[0];
+  if (file) {
+    await loadFace(index, file);
+  }
 }
 
-async function loadFace(idx, file) {
+async function loadFace(index, file) {
   const url = await readFile(file);
-  const img = await loadImg(url);
-  faces[idx] = img;
-  document.getElementById('slot-' + idx).classList.add('loaded');
-  document.getElementById('simg-' + idx).src = url;
+  const image = await loadImg(url);
+  faces[index] = image;
+  document.getElementById(`slot-${index}`).classList.add("loaded");
+  document.getElementById(`simg-${index}`).src = url;
   updatePanoPreview();
   checkB2JReady();
 }
 
 function updatePanoPreview() {
-  for (let i = 0; i < 6; i++) {
-    const cell = document.getElementById('pc-' + i);
-    const old  = cell.querySelector('img');
-    if (old) old.remove();
-    if (faces[i]) {
-      const img = document.createElement('img');
-      img.src = faces[i].src;
-      cell.prepend(img);
+  for (let index = 0; index < 6; index += 1) {
+    const cell = document.getElementById(`pc-${index}`);
+    const oldImage = cell.querySelector("img");
+    if (oldImage) {
+      oldImage.remove();
+    }
+    if (faces[index]) {
+      const image = document.createElement("img");
+      image.src = faces[index].src;
+      image.alt = `cubemap_${index}`;
+      cell.prepend(image);
     }
   }
 }
 
 function checkB2JReady() {
-  document.getElementById('btn-b2j').disabled = !faces.every(Boolean);
+  document.getElementById("btn-b2j").disabled = !faces.every(Boolean);
 }
 
-async function handleBedrockDrop(ev) {
-  ev.preventDefault();
-  setOver('b2j-overlay', false);
-  await assignFiles([...ev.dataTransfer.files]);
+async function handleBedrockDrop(event) {
+  event.preventDefault();
+  setOver("b2j-overlay", false);
+  await assignFiles([...event.dataTransfer.files]);
 }
 
-async function handleBedrockMulti(ev) {
-  await assignFiles([...ev.target.files]);
+async function handleBedrockMulti(event) {
+  await assignFiles([...event.target.files]);
 }
 
 async function assignFiles(files) {
   for (const file of files) {
     const match = file.name.match(/cubemap[_-]?(\d)/i);
     if (match) {
-      const idx = parseInt(match[1]);
-      if (idx >= 0 && idx <= 5) await loadFace(idx, file);
+      const index = Number.parseInt(match[1], 10);
+      if (index >= 0 && index <= 5) {
+        await loadFace(index, file);
+      }
     }
   }
 }
 
 function resetB2J() {
   faces.fill(null);
-  for (let i = 0; i < 6; i++) {
-    document.getElementById('slot-' + i).classList.remove('loaded');
-    document.getElementById('simg-' + i).src = '';
+  for (let index = 0; index < 6; index += 1) {
+    document.getElementById(`slot-${index}`).classList.remove("loaded");
+    document.getElementById(`simg-${index}`).src = "";
   }
   updatePanoPreview();
   checkB2JReady();
-  document.getElementById('res-b2j').classList.remove('show');
+  document.getElementById("res-b2j").classList.remove("show");
 }
 
-/* ================================================================
-   Modal (Bedrock → Java options)
-================================================================ */
 function openConvertModal() {
   lceOn = false;
-  document.getElementById('chk-box-lce').classList.remove('on');
-  document.getElementById('chk-row-lce').classList.remove('active');
-  document.getElementById('modal-b2j').classList.add('open');
+  document.getElementById("chk-box-lce").classList.remove("on");
+  document.getElementById("chk-row-lce").classList.remove("active");
+  document.getElementById("chk-row-lce").setAttribute("aria-pressed", "false");
+  document.getElementById("modal-b2j").classList.add("open");
 }
 
 function closeModal() {
-  document.getElementById('modal-b2j').classList.remove('open');
+  document.getElementById("modal-b2j").classList.remove("open");
 }
 
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('modal-b2j')) closeModal();
+function handleOverlayClick(event) {
+  if (event.target === document.getElementById("modal-b2j")) {
+    closeModal();
+  }
 }
 
 function toggleLce() {
   lceOn = !lceOn;
-  document.getElementById('chk-box-lce').classList.toggle('on', lceOn);
-  document.getElementById('chk-row-lce').classList.toggle('active', lceOn);
+  document.getElementById("chk-box-lce").classList.toggle("on", lceOn);
+  document.getElementById("chk-row-lce").classList.toggle("active", lceOn);
+  document.getElementById("chk-row-lce").setAttribute("aria-pressed", String(lceOn));
 }
 
 async function doConvertB2J() {
@@ -264,144 +264,153 @@ async function doConvertB2J() {
   await convertB2J();
 }
 
-/* ================================================================
-   Bedrock → Java: conversion
-================================================================ */
 async function convertB2J() {
-  const faceW = faces[0].naturalWidth;
-  const faceH = faces[0].naturalHeight;
+  const faceWidth = faces[0].naturalWidth;
+  const faceHeight = faces[0].naturalHeight;
+  const canvas = document.createElement("canvas");
+  canvas.width = faceWidth * 3;
+  canvas.height = faceHeight * 2;
+  const context = canvas.getContext("2d");
+  context.fillStyle = "#000";
+  context.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Compose 3×2 grid canvas
-  const canvas = document.createElement('canvas');
-  canvas.width  = faceW * 3;
-  canvas.height = faceH * 2;
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#000';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  for (let row = 0; row < 2; row++) {
-    for (let col = 0; col < 3; col++) {
-      ctx.drawImage(faces[LAYOUT[row][col]], col * faceW, row * faceH, faceW, faceH);
+  for (let row = 0; row < 2; row += 1) {
+    for (let column = 0; column < 3; column += 1) {
+      context.drawImage(
+        faces[layout[row][column]],
+        column * faceWidth,
+        row * faceHeight,
+        faceWidth,
+        faceHeight
+      );
     }
   }
 
-  // LCE resize to 4032×2688
-  let out = canvas;
+  let output = canvas;
   if (lceOn) {
-    out = document.createElement('canvas');
-    out.width  = 4032;
-    out.height = 2688;
-    out.getContext('2d').drawImage(canvas, 0, 0, 4032, 2688);
+    output = document.createElement("canvas");
+    output.width = 4032;
+    output.height = 2688;
+    output.getContext("2d").drawImage(canvas, 0, 0, 4032, 2688);
   }
 
-  const dataUrl = out.toDataURL('image/png');
-  const res = document.getElementById('res-b2j');
-  res.classList.add('show');
-  document.getElementById('res-b2j-img').src  = dataUrl;
-  document.getElementById('res-b2j-dl').href  = dataUrl;
-  res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  const dataUrl = output.toDataURL("image/png");
+  const result = document.getElementById("res-b2j");
+  result.classList.add("show");
+  document.getElementById("res-b2j-img").src = dataUrl;
+  document.getElementById("res-b2j-dl").href = dataUrl;
+  result.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-/* ================================================================
-   Java → Bedrock: file upload
-================================================================ */
-async function handleJavaInput(ev) {
-  const file = ev.target.files[0];
-  if (file) await loadJavaSky(file);
+async function handleJavaInput(event) {
+  const file = event.target.files[0];
+  if (file) {
+    await loadJavaSky(file);
+  }
 }
 
-async function handleJavaDrop(ev) {
-  ev.preventDefault();
-  setOver('j2b-dz', false);
-  const file = ev.dataTransfer.files[0];
-  if (file) await loadJavaSky(file);
+async function handleJavaDrop(event) {
+  event.preventDefault();
+  setOver("j2b-dz", false);
+  const file = event.dataTransfer.files[0];
+  if (file) {
+    await loadJavaSky(file);
+  }
 }
 
 async function loadJavaSky(file) {
   const url = await readFile(file);
   javaImg = await loadImg(url);
-  document.getElementById('j2b-fname').textContent = file.name;
-  document.getElementById('j2b-prev-wrap').classList.add('show');
-  document.getElementById('j2b-prev-img').src = url;
-  document.getElementById('btn-j2b').disabled  = false;
+  document.getElementById("j2b-fname").textContent = file.name;
+  document.getElementById("j2b-prev-wrap").classList.add("show");
+  document.getElementById("j2b-prev-img").src = url;
+  document.getElementById("btn-j2b").disabled = false;
 }
 
 function resetJ2B() {
   javaImg = null;
   zipFiles = [];
-  document.getElementById('j2b-fname').textContent    = '';
-  document.getElementById('j2b-prev-wrap').classList.remove('show');
-  document.getElementById('j2b-prev-img').src         = '';
-  document.getElementById('btn-j2b').disabled         = true;
-  document.getElementById('res-j2b').classList.remove('show');
-  document.getElementById('br-grid').innerHTML        = '';
+  document.getElementById("j2b-fname").textContent = "";
+  document.getElementById("j2b-prev-wrap").classList.remove("show");
+  document.getElementById("j2b-prev-img").src = "";
+  document.getElementById("btn-j2b").disabled = true;
+  document.getElementById("res-j2b").classList.remove("show");
+  document.getElementById("br-grid").innerHTML = "";
 }
 
-/* ================================================================
-   Java → Bedrock: conversion
-================================================================ */
 async function convertJ2B() {
-  const img   = javaImg;
-  const faceW = img.naturalWidth  / 3;
-  const faceH = img.naturalHeight / 2;
-
+  const faceWidth = Math.floor(javaImg.naturalWidth / 3);
+  const faceHeight = Math.floor(javaImg.naturalHeight / 2);
   zipFiles = [];
-  const grid = document.getElementById('br-grid');
-  grid.innerHTML = '';
+  const grid = document.getElementById("br-grid");
+  grid.innerHTML = "";
 
-  for (let row = 0; row < 2; row++) {
-    for (let col = 0; col < 3; col++) {
-      const fi = LAYOUT[row][col];
-      const c  = document.createElement('canvas');
-      c.width  = faceW;
-      c.height = faceH;
-      c.getContext('2d').drawImage(img, col * faceW, row * faceH, faceW, faceH, 0, 0, faceW, faceH);
-      zipFiles.push({ name: `cubemap_${fi}.png`, dataUrl: c.toDataURL('image/png') });
+  for (let row = 0; row < 2; row += 1) {
+    for (let column = 0; column < 3; column += 1) {
+      const faceIndex = layout[row][column];
+      const canvas = document.createElement("canvas");
+      canvas.width = faceWidth;
+      canvas.height = faceHeight;
+      canvas.getContext("2d").drawImage(
+        javaImg,
+        column * faceWidth,
+        row * faceHeight,
+        faceWidth,
+        faceHeight,
+        0,
+        0,
+        faceWidth,
+        faceHeight
+      );
+      zipFiles.push({
+        name: `cubemap_${faceIndex}.png`,
+        dataUrl: canvas.toDataURL("image/png")
+      });
     }
   }
 
-  zipFiles.sort((a, b) =>
-    parseInt(a.name.match(/\d+/)[0]) - parseInt(b.name.match(/\d+/)[0])
-  );
+  zipFiles.sort((first, second) => {
+    const firstIndex = Number.parseInt(first.name.match(/\d+/)[0], 10);
+    const secondIndex = Number.parseInt(second.name.match(/\d+/)[0], 10);
+    return firstIndex - secondIndex;
+  });
 
-  const dlLabel = T[lang].br_dl;
-  for (const f of zipFiles) {
-    const item = document.createElement('div');
-    item.className = 'br-item';
+  for (const file of zipFiles) {
+    const item = document.createElement("div");
+    item.className = "br-item";
     item.innerHTML = `
-      <img src="${f.dataUrl}" alt="${f.name}">
-      <div class="br-item-name">${f.name}</div>
-      <a class="br-item-dl" href="${f.dataUrl}" download="${f.name}">${dlLabel}</a>
+      <img src="${file.dataUrl}" alt="${file.name}">
+      <div class="br-item-name">${file.name}</div>
+      <a class="br-item-dl" href="${file.dataUrl}" download="${file.name}">${translations[lang].br_dl}</a>
     `;
     grid.appendChild(item);
   }
 
-  const res = document.getElementById('res-j2b');
-  res.classList.add('show');
-  res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  const result = document.getElementById("res-j2b");
+  result.classList.add("show");
+  result.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-/* ================================================================
-   ZIP download
-================================================================ */
 async function downloadZip() {
-  if (!zipFiles.length) return;
-
-  if (typeof JSZip !== 'undefined') {
-    const zip = new JSZip();
-    for (const f of zipFiles) {
-      zip.file(f.name, f.dataUrl.split(',')[1], { base64: true });
-    }
-    const blob = await zip.generateAsync({ type: 'blob' });
-    const url  = URL.createObjectURL(blob);
-    dlFile(url, 'bedrock_sky.zip');
-    URL.revokeObjectURL(url);
-  } else {
-    zipFiles.forEach((f, i) => setTimeout(() => dlFile(f.dataUrl, f.name), i * 250));
+  if (!zipFiles.length) {
+    return;
   }
+
+  if (typeof JSZip !== "undefined") {
+    const zip = new JSZip();
+    for (const file of zipFiles) {
+      zip.file(file.name, file.dataUrl.split(",")[1], { base64: true });
+    }
+    const blob = await zip.generateAsync({ type: "blob" });
+    const url = URL.createObjectURL(blob);
+    downloadFile(url, "bedrock_sky.zip");
+    URL.revokeObjectURL(url);
+    return;
+  }
+
+  zipFiles.forEach((file, index) => {
+    setTimeout(() => downloadFile(file.dataUrl, file.name), index * 250);
+  });
 }
 
-/* ================================================================
-   Bootstrap
-================================================================ */
 initSlots();
